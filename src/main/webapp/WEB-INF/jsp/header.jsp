@@ -3,7 +3,6 @@
 
 <div >
 	<h1><a href="/">A2Z</a></h1>
-	<button class="nav-btn"> <a href="/login"> Login </a> </button>
-	<button class="nav-btn"> <a href="/signup"> SignUp</a> </button>
+	
 </div>
 

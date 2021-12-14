@@ -6,5 +6,5 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <t:layout>
-
+    
 </t:layout>
