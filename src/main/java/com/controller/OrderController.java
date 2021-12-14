@@ -46,6 +46,7 @@ public class OrderController {
 		
         Set<CartItemModel> cartItemModels = cartItemModelRepository.findAllByUserIdAndProceedToPayment(userModel, true);
         
+        mandv.addObject("title", "Order Details");
         mandv.addObject("cartItems", cartItemModels);
         mandv.setViewName("customer/orderDetails");
         return mandv;
@@ -90,6 +91,8 @@ public class OrderController {
         Set<OrderModel> Orders = orderModelRepository.findAllByUserId(userModel.getEmail());
         
         mandv.addObject("orders", Orders);
+        
+        mandv.addObject("title", "Orders");
         mandv.setViewName("customer/orders");
         return mandv;
 		
@@ -99,6 +102,7 @@ public class OrderController {
 	public ModelAndView getAllOrders(ModelAndView mandv, HttpServletRequest request) {
 		        
         mandv.addObject("orders", orderModelRepository.findAll());
+        mandv.addObject("title", "Orders");
         mandv.setViewName("admin/orders");
         return mandv;
 	}

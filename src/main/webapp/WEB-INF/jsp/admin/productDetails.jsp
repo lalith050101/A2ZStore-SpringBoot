@@ -6,7 +6,7 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<t:customerLayout>
+<t:adminLayout>
 	<div align="center" class="product-list">
            <h1 id="pdheading">PRODUCT DETAILS</h1>
             <table id="products" >
@@ -42,5 +42,5 @@
             
                                    
         </div>	
-</t:customerLayout>
+</t:adminLayout>
         

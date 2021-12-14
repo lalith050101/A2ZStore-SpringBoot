@@ -25,7 +25,9 @@
                     <td>${product.price}</td>
                     <td>${product.quantity}</td>
                     <td>${product.category}</td>
-                    
+                    <td>    
+                        <a class="actionlink" href="/getProduct/${product.productId}">View</a>
+                    </td>
                     <td>
                         <a class="actionlink" href="/editProduct/${product.productId}">Edit</a>
 

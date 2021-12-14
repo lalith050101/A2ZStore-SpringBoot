@@ -8,7 +8,7 @@
 
 <t:customerLayout>
 	<div align="center" class="product-list">
-           <h1 id="pdheading">PRODUCT LIST</h1>
+           
             <table id="products" >
                 <tr >
                 <th>S. No </th>

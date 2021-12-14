@@ -18,6 +18,7 @@ public class HomePageController {
 	public ModelAndView loadCustomerHomePage(ModelAndView mandv) {
 		mandv.addObject("productList", productRepository.findAll());
 
+		mandv.addObject("title", "Home");
 		mandv.setViewName("customer/home");
 		return mandv;
 	}
@@ -25,6 +26,8 @@ public class HomePageController {
 	@RequestMapping(path="adminHome", method=RequestMethod.GET)
 	public ModelAndView loadAdminHomePage(ModelAndView mandv) {
 		mandv.addObject("productList", productRepository.findAll());
+		
+		mandv.addObject("title", "Admin Home");
 		mandv.setViewName("admin/home");
 		return mandv;
 	}

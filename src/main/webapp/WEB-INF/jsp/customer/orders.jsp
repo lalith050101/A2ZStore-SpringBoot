@@ -8,6 +8,11 @@
 <t:customerLayout>
 	<div align="center">
            <h1 id="pdheading">ORDERS</h1>
+           
+			<c:choose>
+			    <c:when test="${orders.size() != 0}">
+			    
+			    
             <table id="cartItems" >
                 <tr >
                 <th>S. No.</th>
@@ -48,6 +53,14 @@
                 </c:forEach>   
                 </c:forEach>             
             </table>    
+            
+            </c:when>
+			    <c:otherwise>
+			        <h2> Not Ordered any item yet! </h2>
+			        <a href="/cart" > Order items from cart </a>
+			    </c:otherwise>      
+			</c:choose>
+			
         </div>
 </t:customerLayout>
 

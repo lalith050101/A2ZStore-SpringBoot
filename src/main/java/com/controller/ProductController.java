@@ -27,6 +27,8 @@ public class ProductController {
 	@GetMapping("addProduct")
 	public ModelAndView loadAddProductPage(ModelAndView mandv) {
 		mandv.addObject("productModel",new ProductModel());
+		
+		mandv.addObject("title", "Add Product");
 		mandv.setViewName("admin/addProduct");
 		System.out.println("bfore load add prod pg........");
 		return mandv;
@@ -54,6 +56,7 @@ public class ProductController {
 		System.out.println("edit called");
 		mandv.addObject("productModel", (ProductModel)productRepository.findById(productId).orElse(null));
 		
+		mandv.addObject("title", "Edit Product");
 		mandv.setViewName("/admin/editProduct");
 		System.out.println("return in editprod...");
 		return mandv;
@@ -83,6 +86,8 @@ public class ProductController {
 		UserModel userModel = userModelService.extractUserModel(request);
 		
 		mandv.addObject("productModel", productRepository.findById(productId).orElse(null));
+		
+		mandv.addObject("title", "Product Details");
 		
 		if(userModel.getRole().equals("admin"))
 			mandv.setViewName("admin/productDetails");
