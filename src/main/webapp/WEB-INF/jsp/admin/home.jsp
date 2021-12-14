@@ -25,7 +25,7 @@
                     <td>${product.price}</td>
                     <td>${product.quantity}</td>
                     <td>${product.category}</td>
-                    <td><img style="object-fit: cover;" src="${product.imageUrl}" width="100" height="100"/></td>
+                    
                     <td>
                         <a class="actionlink" href="/editProduct/${product.productId}">Edit</a>
 
@@ -33,7 +33,7 @@
                     <td>    
                         <a class="actionlink" href="/deleteProduct/${product.productId}">Delete</a>
                     </td>
-                             
+                    <td><img style="object-fit: cover;" src="${product.imageUrl}" width="100" height="100"/></td>        
                 </tr>
                 </c:forEach>             
             </table>

@@ -13,8 +13,7 @@ public class HomeController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView loadSignupPage(ModelAndView mandv) {
 		System.out.println("home page of app");
-		mandv.addObject("title", "Index");
-		mandv.setViewName("index");
+		mandv.setViewName("redirect:/login");
 		return mandv;
 	}
 	
