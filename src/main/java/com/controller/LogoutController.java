@@ -18,7 +18,7 @@ public class LogoutController {
 	@Autowired
 	UserModelService userModelService;
 	
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView processLogoutPage(ModelAndView mandv, HttpServletRequest request) {
 //		if(!userModelService.checkUser(LoginModel)) {
 //			mandv.setViewName("login");
