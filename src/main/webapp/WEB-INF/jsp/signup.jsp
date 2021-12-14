@@ -28,7 +28,7 @@
 							<div class="form-group row ml-5">
 								<label for="validationDeafult02" class="col-md-2 pl-md-5">Email id</label>
 								<div class="col-md-6">
-									<form:input class="form-control" path="email" id="validationDeafult02" />
+									<form:input class="form-control" type="email" path="email" id="validationDeafult02" />
 								</div>
 							</div>
 
@@ -51,7 +51,7 @@
 							<div class="form-group row ml-5">
 								<label for="validationDeafult05" class="col-md-2 pl-md-5">Password</label>
 								<div class="col-md-6">
-									<form:input class="form-control" path="password" type="password" name="pswrd"
+									<form:input class="form-control" path="password" minlength="6" maxlength="30" type="password" name="pswrd"
 										id="validationDeafult05" />
 								</div>
 							</div>

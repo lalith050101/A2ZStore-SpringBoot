@@ -77,6 +77,7 @@ public class CartController {
         
 		mandv.addObject("cartItems", cartItemModels);
 
+		mandv.addObject("title", "Cart");
 		mandv.setViewName("customer/cart");
 		return mandv; 
 	}

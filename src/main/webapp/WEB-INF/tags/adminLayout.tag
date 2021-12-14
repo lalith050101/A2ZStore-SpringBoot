@@ -10,8 +10,7 @@
         <link href="${contextPath}/resources/css/style.css" rel="stylesheet" />
     </head>
     <body>
-		<jsp:include page="${contextPath}/WEB-INF/jsp/admin/loginValidation.jsp" />	
-    
+		
         <div>
             <div>
                 <jsp:include page="${contextPath}/WEB-INF/jsp/admin/header.jsp" />

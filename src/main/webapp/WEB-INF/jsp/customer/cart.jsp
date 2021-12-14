@@ -9,6 +9,12 @@
 <t:customerLayout>
 	<div align="center">	
            <h1 id="pdheading">CART ITEMS</h1>
+           
+           <c:set var="inputDisplay" value="1" /> <!-- This same as your request attribute -->
+			<c:choose>
+			    <c:when test="${cartItems.size() != 0}">
+			        
+			    
     	   <form method="post" action="proceedOrder" >
             <table id="cartItems" >
                 <tr >
@@ -49,6 +55,12 @@
             
             <input type="submit" name="submit" value="Proceed Order">
             </form>
+            
+            </c:when>
+			    <c:otherwise>
+			        <h2> No items added to cart</h2>
+			    </c:otherwise>      
+			</c:choose>
         </div>
 </t:customerLayout>
 
