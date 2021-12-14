@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.emailsender.EmailSenderV1;
+import com.emailsender.EmailSenderV1Imp;
 import com.model.UserModel;
 import com.service.UserModelService;
 
@@ -33,8 +35,14 @@ public class SignupController {
 			mandv.setViewName("signup");
 			return mandv;
 		}
-
 		
+		try {
+		EmailSenderV1 es = new EmailSenderV1Imp();
+		es.sendEmail(userModel.getEmail(), "Account Creation", "Your account for Spring A2Z Store have been created successfully..." + "Email: " + userModel.getEmail());
+
+		} catch(Exception e) {
+			System.out.println("Email not sent for signup");
+		}
 		return new ModelAndView("redirect:/login");
 
 	}
