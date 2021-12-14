@@ -10,13 +10,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model.ProductModel;
+import com.model.UserModel;
 import com.repository.ProductRepository;
+import com.service.UserModelService;
 
 @Controller
 public class ProductController {
 
 	@Autowired
     private ProductRepository productRepository;
+	
+	@Autowired
+    private UserModelService userModelService;
+	
 	
 	@GetMapping("addProduct")
 	public ModelAndView loadAddProductPage(ModelAndView mandv) {
@@ -73,12 +79,18 @@ public class ProductController {
 	}
 	
 	@GetMapping("/getProduct/{productId}")
-	public ModelAndView getProduct(@PathVariable Long productId, ModelAndView mandv) {
+	public ModelAndView getProduct(@PathVariable Long productId, ModelAndView mandv, HttpServletRequest request) {
+		UserModel userModel = userModelService.extractUserModel(request);
+		
 		mandv.addObject("productModel", productRepository.findById(productId).orElse(null));
 		
-		mandv.addObject("quantity", 1);
-
-		mandv.setViewName("customer/productDetails");
+		if(userModel.getRole().equals("admin"))
+			mandv.setViewName("admin/productDetails");
+		
+		else {
+			mandv.setViewName("customer/productDetails");
+			mandv.addObject("quantity", 1);
+		}
 		return mandv;
 		
 	}
