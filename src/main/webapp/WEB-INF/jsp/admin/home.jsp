@@ -1,44 +1,42 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8" %>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+            <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+                <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<t:adminLayout>
-		<div align="center" class="product-list">
-           <h1 id="pdheading">PRODUCT LIST</h1>
-            <table id="products" >
-                <tr >
-                <th>S. No </th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Category</th>
-                <th colspan="2" >ACTION</th>
-                 </tr>
-                <c:forEach var="product" items="${productList}" varStatus="status">
-                <tr>
-                    <td>${status.index + 1}</td>
-                    <td>${product.productName}</td>
-                    <td>${product.price}</td>
-                    <td>${product.quantity}</td>
-                    <td>${product.category}</td>
-                    <td>    
-                        <a class="actionlink" href="/getProduct/${product.productId}">View</a>
-                    </td>
-                    <td>
-                        <a class="actionlink" href="/editProduct/${product.productId}">Edit</a>
+                <t:adminLayout>
+                        <h1 class="text-center pb-2">PRODUCT LIST</h1>
+                        <div class="container mt-2">
+                            <div class="row mb-3 ml-5">
+                                <c:forEach var="product" items="${productList}" varStatus="status">
 
-                     </td>
-                    <td>    
-                        <a class="actionlink" href="/deleteProduct/${product.productId}">Delete</a>
-                    </td>
-                    <td><img style="object-fit: cover;" src="${product.imageUrl}" width="100" height="100"/></td>        
-                </tr>
-                </c:forEach>             
-            </table>
-		</div>
-</t:adminLayout>
+                                    <div class="card col-12 col-md-8 col-lg-3 mr-5 mb-3 p-1">
 
+                                        <img  src="${product.imageUrl}" class="card-img-top"
+                                            height="300" />
+                                        <div class="card-body d-flex flex-column">
+                                            <h5 class="card-title"><a class="actionlink"
+                                                href="/getProduct/${product.productId}">${product.productName}</a></h5>
+                                            <h6>Price: ${product.price}</h6>
+                                            <h6>quantity: ${product.quantity}</h6>
+
+                                            <div class="row mt-2">
+            
+                                                <div class="col-6">
+                                                    <a class="actionlink btn btn-primary"
+                                                        href="/editProduct/${product.productId}">Edit</a>
+                                                </div>
+                                                <div class="col-6">
+                                                    <a class="actionlink btn btn-primary"
+                                                        href="/deleteProduct/${product.productId}">Delete</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </div>
+                </t:adminLayout>

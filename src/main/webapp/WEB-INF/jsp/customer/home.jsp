@@ -7,31 +7,26 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <t:customerLayout>
-	<div align="center" class="product-list">
-           
-            <table id="products" >
-                <tr >
-                <th>S. No </th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>IMAGE</th>
-                <th colspan="2" >ACTION</th>
-                 </tr>
-                <c:forEach var="product" items="${productList}" varStatus="status">
-                <tr>
-                    <td>${status.index + 1}</td>
-                    <td>${product.productName}</td>
-                    <td>${product.price}</td>
-                    <td>${product.category}</td>
-                    <td><img style="object-fit: cover;" src="${product.imageUrl}" width="100" height="100"/></td>
-                    <td>    
-                        <a class="actionlink" href="/getProduct/${product.productId}">View</a>
-                    </td>
-                             
-                </tr>
-                </c:forEach>             
-            </table>
-        </div>
+	
+        <h1 class="text-center pb-2">PRODUCT LIST</h1>
+                        <div class="container mt-2">
+                            <div class="row mb-3 ml-5">
+                                <c:forEach var="product" items="${productList}" varStatus="status">
+
+                                    <div class="card col-12 col-md-8 col-lg-3 mr-5 mb-3 p-1">
+
+                                        <img src="${product.imageUrl}" class="card-img-top"
+                                            height="300" />
+                                        <div class="card-body d-flex flex-column">
+                                            <h5 class="card-title"><a class="actionlink"
+                                                href="/getProduct/${product.productId}">${product.productName}</a></h5>
+                                            <h6>Price: ${product.price}</h6>
+                                            <h6>quantity: ${product.quantity}</h6>                               
+
+                                            </div>
+                                        </div>
+                                </c:forEach>
+                            </div>
+                        </div>
 </t:customerLayout>
 
