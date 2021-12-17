@@ -12,31 +12,23 @@
                         <h3 style="color:green"> ${orderStatus} </h3>
                         <c:choose>
                             <c:when test="${orders.size() != 0}">
-
-
-                                <table id="cartItems">
-                                    
-                                    <tr>
+									<div>
                                         <th>S. No.</th>
                                         <th>Order ID</th>
                                         <th>Total Price</th>
                                         <th>Name</th>
                                         <th>Address</th>
                                         <th>Contact No.</th>
-                                    </tr>
-
+									</div>
                                     <c:forEach var="order" items="${orders}" varStatus="status">
-                                        <tr>
-
+                                    	<div>
                                             <td>${status.index + 1}</td>
                                             <td>${order.id}</td>
                                             <td>${order.totalPrice}</td>
                                             <td>${order.name}</td>
                                             <td>${order.address}</td>
                                             <td>${order.contactNumber}</td>
-                                        </tr>
-                                        
-                                        
+										</div>
                                         <div class="container mt-2">
                                             <div class="row mb-3 ml-5">
                                         
@@ -58,10 +50,8 @@
                                                 </c:forEach>
                                             </div>
                                         </div>
-                                    </c:forEach>
-                                </table>
-                            
-
+                                       
+                                    </c:forEach>                        
                             </c:when>
                             <c:otherwise>
                                 <h2> Not Ordered any item yet! </h2>
