@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,6 +54,9 @@ public class OrderController {
 	public static final String SUCCESS_URL = "pay/success";
 	public static final String CANCEL_URL = "pay/cancel";
 	
+	@Value("${app.url}")
+	private String APP_URL;
+	
 	@GetMapping(path="orderDetails")
 	public ModelAndView orderDetails(ModelAndView mandv, HttpServletRequest request) {
         UserModel userModel = userModelService.extractUserModel(request);
@@ -93,8 +97,8 @@ public class OrderController {
            	 Order order = new Order(orderModel.getTotalPrice(), "USD", "PayPal", "sale", orderModel.getId().toString());
           
      			Payment payment = payPalService.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(),
-     					order.getIntent(), order.getDescription(), "http://localhost:8080/" + CANCEL_URL,
-     					"http://localhost:8080/" + SUCCESS_URL);
+     					order.getIntent(), order.getDescription(), APP_URL + CANCEL_URL,
+     					APP_URL + SUCCESS_URL);
      			for(Links link:payment.getLinks()) {
      				System.out.println("Link: " + link.getRel() + " : " + link.getHref());
      				if(link.getRel().equals("approval_url")) {
@@ -116,13 +120,14 @@ public class OrderController {
         	orderModel.setStatus("ordered");
         	 
         	orderModelRepository.save(orderModel);
-             
+            
             orderModelService.copyCartToOrders(userModel, orderModel);
              
             cartItemModelRepository.deleteAllByUserIdAndProceedToPayment(userModel, true);
              
                         
             mandv.addObject("orderStatus", "Successful! Order placed!");
+            
             Set<OrderModel> Orders = orderModelRepository.findAllByUserId(userModel.getEmail());
             mandv.addObject("orders", Orders);
             

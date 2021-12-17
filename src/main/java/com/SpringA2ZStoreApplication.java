@@ -14,6 +14,7 @@ import org.springframework.util.ResourceUtils;
 import com.model.ProductModel;
 import com.model.UserModel;
 import com.opencsv.CSVReader;
+import com.repository.CartItemModelRepository;
 import com.repository.OrderItemModelRepository;
 import com.repository.OrderModelRepository;
 import com.repository.ProductRepository;
@@ -42,6 +43,9 @@ class MyCommandLineRunner implements CommandLineRunner {
 	@Autowired
 	private OrderModelRepository orderModelRepository;
 	
+	@Autowired
+	private CartItemModelRepository cartModelRepository;
+	
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -51,9 +55,11 @@ class MyCommandLineRunner implements CommandLineRunner {
 		
 		
 		orderItemModelRepository.deleteAllInBatch();
-		
+		orderItemModelRepository.flush();
 		orderModelRepository.deleteAllInBatch(); 
-		
+		orderModelRepository.flush();
+		cartModelRepository.deleteAllInBatch();
+		cartModelRepository.flush();
 		productRepository.deleteAllInBatch();
 		CSVReader reader = null;  
 		try  
