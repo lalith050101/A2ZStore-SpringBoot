@@ -121,7 +121,14 @@ public class OrderController {
              
             cartItemModelRepository.deleteAllByUserIdAndProceedToPayment(userModel, true);
              
-            mandv.setViewName("redirect:/home");
+                        
+            mandv.addObject("orderStatus", "Successful! Order placed!");
+            Set<OrderModel> Orders = orderModelRepository.findAllByUserId(userModel.getEmail());
+            mandv.addObject("orders", Orders);
+            
+            mandv.addObject("title", "Orders");
+            
+    		mandv.setViewName("customer/orders");
         }
         
         return mandv;
@@ -132,7 +139,7 @@ public class OrderController {
 	public ModelAndView paymentSuccess(ModelAndView mandv, HttpServletRequest request) {
         UserModel userModel = userModelService.extractUserModel(request);
 		
-        mandv.addObject("paymentStatus", "Payment Done Successfully! Order placed!");
+        mandv.addObject("orderStatus", "Payment Done Successfully! Order placed!");
         
         Set<OrderModel> Orders = orderModelRepository.findAllByUserId(userModel.getEmail());
         mandv.addObject("orders", Orders);

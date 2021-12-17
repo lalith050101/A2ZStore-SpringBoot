@@ -2,6 +2,7 @@ package com.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class OrderModel {
     
     private String status;
     
-    @OneToMany(mappedBy="orderId",fetch=FetchType.LAZY)
+    @OneToMany(mappedBy="orderId",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<OrderItemModel> orderItems;
     
     public OrderModel() {

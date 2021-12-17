@@ -9,7 +9,7 @@
                     <div align="center">
                         <h1 id="pdheading">ORDERS</h1>
                         
-                        <h3 style="color:green"> ${paymentStatus} </h3>
+                        <h3 style="color:green"> ${orderStatus} </h3>
                         <c:choose>
                             <c:when test="${orders.size() != 0}">
 

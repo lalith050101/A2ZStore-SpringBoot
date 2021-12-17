@@ -7,8 +7,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <t:customerLayout>
-	
-        <h1 class="text-center pb-2">PRODUCT LIST</h1>
+
                         <div class="container mt-2">
                             <div class="row mb-3 ml-5">
                                 <c:forEach var="product" items="${productList}" varStatus="status">

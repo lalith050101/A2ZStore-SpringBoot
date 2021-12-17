@@ -8,15 +8,11 @@
 
 <t:adminLayout>
 	<div align="center" class="product-list">
-           <h1 id="pdheading">PRODUCT DETAILS</h1>
+           <h1 id="pdheading">${productModel.productName}</h1>
             <table id="products" >
             	<tr >
                 <th>Product ID</th>
                 <td>${productModel.productId}</td>
-                </tr>
-                <tr >
-                <th>Product Name</th>
-                <td>${productModel.productName}</td>
                 </tr>
                 <tr>
                 <th>Price</th>

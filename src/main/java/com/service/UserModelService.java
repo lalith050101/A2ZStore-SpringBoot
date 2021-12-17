@@ -26,6 +26,20 @@ public class UserModelService {
 		return true;
 	}
 	
+	public boolean updateUserModel(UserModel userModel) {
+		
+		UserModel user = userModelRepository.findById(userModel.getEmail()).orElse(null);		
+		if(user == null) {
+			return false;
+		}
+		user.setUsername(userModel.getUsername());
+		user.setMobileNumber(userModel.getMobileNumber());
+		user.setAddress(userModel.getAddress());
+		user.setPassword(userModel.getPassword());
+		userModelRepository.save(user);
+		return true;
+	}
+	
 	
 	public boolean checkUser(UserModel userModel) {
 		UserModel user = userModelRepository.findById(userModel.getEmail()).orElse(null);

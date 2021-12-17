@@ -35,9 +35,10 @@
                     <td>${cartItem.productId.productName}</td>
                     <td>${cartItem.productId.price}</td>
                     <td>
-	             	<input type="number" value="${cartItem.quantity}" name="quantity" required>
+	             	<input type="number" value="${cartItem.quantity}" onchange="changeQuantity(this)" name="quantity" id="quantity" required>
 	             	
 	             	</td>
+                    <div style="display:none" id="productId">${cartItem.cartItemId}</div>
                     
                     <td>${cartItem.productId.price * cartItem.quantity}</td>
                     <td>    
@@ -62,5 +63,16 @@
 			    </c:otherwise>      
 			</c:choose>
         </div>
+        <script>
+        function changeQuantity(cartItemId, quantity) {
+        	var cartItemId =quantity.value;
+        	var qnty = document.quantity.value;
+        	
+        	var xmlHttp = new XMLHttpRequest();
+		    xmlHttp.open( "GET", "updateCart/"+cartItemId, false ); // false for synchronous request
+		    xmlHttp.send(qnty);
+		    return xmlHttp.responseText;
+        }
+        </script>
 </t:customerLayout>
 

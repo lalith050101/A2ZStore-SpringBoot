@@ -8,12 +8,10 @@
 
 <t:customerLayout>
 	<div align="center" class="product-list">
-           <h1 id="pdheading">PRODUCT DETAILS</h1>
+           <h1 id="pdheading">${productModel.productName}</h1>
+            <h3 style="color:green"> ${addToCart} </h3>
             <table id="products" >
-                <tr >
-                <th>Product Name</th>
-                <td>${productModel.productName}</td>
-                </tr>
+                
                 <tr>
                 <th>Price</th>
                 <td>${productModel.price}</td>
@@ -26,6 +24,11 @@
                 <th>Description</th>
                 <td>${productModel.description}</td>
                 </tr> 
+                <tr>
+                <th>Available Quantity</th>
+                <td>${productModel.quantity}</td>
+                </tr>
+                
                 <tr>
                 <td><img src="${productModel.imageUrl}" width="200" height="200"/></td>
                 </tr>                          

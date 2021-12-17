@@ -18,85 +18,84 @@ import com.service.UserModelService;
 public class ProductController {
 
 	@Autowired
-    private ProductRepository productRepository;
-	
+	private ProductRepository productRepository;
+
 	@Autowired
-    private UserModelService userModelService;
-	
-	
+	private UserModelService userModelService;
+
 	@GetMapping("addProduct")
 	public ModelAndView loadAddProductPage(ModelAndView mandv) {
-		mandv.addObject("productModel",new ProductModel());
-		
+		mandv.addObject("productModel", new ProductModel());
+
 		mandv.addObject("title", "Add Product");
 		mandv.setViewName("admin/addProduct");
 		System.out.println("bfore load add prod pg........");
 		return mandv;
-		
+
 	}
-	
+
 	@PostMapping("addProduct")
 	public ModelAndView processAddProductPage(ProductModel productModel, ModelAndView mandv) {
 		productRepository.save(productModel);
-		
+
 		mandv.setViewName("redirect:/adminHome");
 		return mandv;
-		
+
 	}
-	
+
 	@GetMapping("editProduct/{productId}")
-	public ModelAndView editProduct(@PathVariable Long productId, ModelAndView mandv,  HttpServletRequest request) {
-		
-		if(!LoginValidationController.isValidUser(request.getSession())) {
+	public ModelAndView editProduct(@PathVariable Long productId, ModelAndView mandv, HttpServletRequest request) {
+
+		if (!LoginValidationController.isValidUser(request.getSession())) {
 			mandv.setViewName("redirect:/login");
 			return mandv;
 		}
-			
-			
+
 		System.out.println("edit called");
-		mandv.addObject("productModel", (ProductModel)productRepository.findById(productId).orElse(null));
-		
+		mandv.addObject("productModel", (ProductModel) productRepository.findById(productId).orElse(null));
+
 		mandv.addObject("title", "Edit Product");
 		mandv.setViewName("/admin/editProduct");
 		System.out.println("return in editprod...");
 		return mandv;
-		
+
 	}
-	
+
 	@PostMapping("editProduct/{productId}")
 	public ModelAndView updateProduct(@PathVariable Long productId, ProductModel productModel, ModelAndView mandv) {
 		System.out.println("updateProduct");
 		productRepository.save(productModel);
 		mandv.setViewName("redirect:/adminHome");
 		return mandv;
-		
+
 	}
-	
+
 	@GetMapping("/deleteProduct/{productId}")
 	public ModelAndView deleteProduct(@PathVariable Long productId, ModelAndView mandv) {
 		productRepository.deleteById(productId);
-		
+
 		mandv.setViewName("redirect:/adminHome");
 		return mandv;
-		
+
 	}
-	
+
 	@GetMapping("/getProduct/{productId}")
 	public ModelAndView getProduct(@PathVariable Long productId, ModelAndView mandv, HttpServletRequest request) {
 		UserModel userModel = userModelService.extractUserModel(request);
-		
+
 		mandv.addObject("productModel", productRepository.findById(productId).orElse(null));
-		
+
 		mandv.addObject("title", "Product Details");
-		
-		if(userModel.getRole().equals("admin"))
+
+		if (userModel.getRole().equals("admin"))
 			mandv.setViewName("admin/productDetails");
-		
+
 		else {
-			mandv.setViewName("customer/productDetails");
 			mandv.addObject("quantity", 1);
+			mandv.setViewName("customer/productDetails");
+
 		}
 		return mandv;
-		
+
 	}
 }
