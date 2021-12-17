@@ -10,26 +10,44 @@
                         <h1 id="pdheading">ORDERS</h1>
                         
                         <h3 style="color:green"> ${orderStatus} </h3>
+                        
+                        
                         <c:choose>
                             <c:when test="${orders.size() != 0}">
-									<div>
-                                        <th>S. No.</th>
-                                        <th>Order ID</th>
-                                        <th>Total Price</th>
-                                        <th>Name</th>
-                                        <th>Address</th>
-                                        <th>Contact No.</th>
-									</div>
+									
                                     <c:forEach var="order" items="${orders}" varStatus="status">
-                                    	<div>
-                                            <td>${status.index + 1}</td>
-                                            <td>${order.id}</td>
+                                    
+                                   
+                                    
+                                   
+									
+                                        <div class="container mt-2">
+                                        
+                                        
+                                        <table class="table">
+									  <thead class="thead-light">
+									    <tr>
+									    	
+	                                        <th scope="col">Order ID</th>
+	                                        <th scope="col">Total Price</th>
+	                                        <th scope="col">Name</th>
+	                                        <th scope="col">Address</th>
+	                                        <th scope="col">Contact No.</th>
+									      
+									    </tr>
+									  </thead>
+									  <tbody>
+									    <tr>
+                                            <th scope="row">${order.id}</th>
                                             <td>${order.totalPrice}</td>
                                             <td>${order.name}</td>
                                             <td>${order.address}</td>
                                             <td>${order.contactNumber}</td>
-										</div>
-                                        <div class="container mt-2">
+									    </tr>
+									    
+									  </tbody>
+									</table>
+                                        
                                             <div class="row mb-3 ml-5">
                                         
                                                 <c:forEach var="orderItem" items="${order.orderItems}"

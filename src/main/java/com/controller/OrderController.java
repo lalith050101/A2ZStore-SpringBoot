@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
@@ -177,6 +178,15 @@ public class OrderController {
         mandv.addObject("orders", orderModelRepository.findAll());
         mandv.addObject("title", "Orders");
         mandv.setViewName("admin/orders");
+        return mandv;
+	}
+	
+	@GetMapping(path="getOrder/{orderId}")
+	public ModelAndView getAllOrders(@PathVariable Long orderId, ModelAndView mandv, HttpServletRequest request) {
+		        
+        mandv.addObject("order", orderModelRepository.findById(orderId).orElse(null));
+        mandv.addObject("title", "Order");
+        mandv.setViewName("admin/order");
         return mandv;
 	}
 	
