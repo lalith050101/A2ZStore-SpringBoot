@@ -8,21 +8,43 @@
                 <t:adminLayout>
                     <div align="center">
                         <h1 id="pdheading" class="mb-3">ORDERS</h1>
-                            
 
-                            <c:forEach var="order" items="${orders}" varStatus="status">
-                            <div class="container">
-                            	<div class="row m-1">
-	                            	<div class="col-6 text-right">
-	                            		<h4>Order Id: ${order.id} </h4>
-	                            	</div>
-	                            	<div class="col-2">
-	                                    <a class="actionlink btn btn-primary"
-	                                        href="/getOrder/${order.id}">View order</a>
-	                                </div>
+                        <div class="container" align="center">
+                            <div class="row ml-5">
+                                <div class="col-4">
+
+                                </div>
+                                <div class="col-3">
+                                    <table class="table">
+                                        <thead class="thead-light">
+                                            <tr>
+
+                                                <th scope="col">Order ID</th>
+                                                <th></th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <c:forEach var="order" items="${orders}" varStatus="status">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>${order.id}</td>
+                                                    <td><a class="actionlink btn btn-primary"
+                                                            href="/getOrder/${order.id}">View order</a></td>
+                                                </tr>
+
+                                            </tbody>
+
+
+
+
+
+
+                                        </c:forEach>
+                                    </table>
                                 </div>
                             </div>
-                               
-                            </c:forEach>
+                        </div>
                     </div>
                 </t:adminLayout>

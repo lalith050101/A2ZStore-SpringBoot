@@ -28,7 +28,7 @@
                                                         href="/editProduct/${product.productId}">Edit</a>
                                                 </div>
                                                 <div class="col-6">
-                                                    <a class="actionlink btn btn-primary"
+                                                    <a class="actionlink btn btn-danger"
                                                         href="/deleteProduct/${product.productId}">Delete</a>
                                                 </div>
 

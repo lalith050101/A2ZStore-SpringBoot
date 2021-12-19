@@ -79,6 +79,8 @@ public class OrderController {
         String address = request.getParameter("address");
         String contactNo = request.getParameter("contactNumber");
         String paymentType = request.getParameter("paymentType");
+        
+        
 
         OrderModel orderModel = new OrderModel() ;
         orderModel.setName(name);

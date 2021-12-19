@@ -46,10 +46,9 @@ class MyCommandLineRunner implements CommandLineRunner {
 	@Autowired
 	private CartItemModelRepository cartModelRepository;
 	
-	
 	@Override
 	public void run(String... args) throws Exception {
-		
+		/*
 		createUser("admin@a2z.app", "admin@a2z", "admin", "Admin", true);
 		createUser("testuser@a2z.app", "testuser@a2z", "customer", "Test User", true);
 		
@@ -82,7 +81,7 @@ class MyCommandLineRunner implements CommandLineRunner {
 		catch (Exception e)   
 		{  
 		e.printStackTrace();  
-		}  
+		}*/ 
 		
 
 	}

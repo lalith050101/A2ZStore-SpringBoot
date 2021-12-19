@@ -17,6 +17,9 @@
 	  <div class="collapse navbar-collapse" id="navbarToggler">
 		<ul class="navbar-nav ml-auto">
 
+			<li class="nav-item">
+				<a class="nav-link" href="/adminHome" style="color: white;">Home</a>
+			</li>
 		  <li class="nav-item">
 			<a class="nav-link" href="/allOrders" style="color: white;">All Orders</a>
 		  </li>

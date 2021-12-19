@@ -7,47 +7,39 @@
 
                 <t:adminLayout>
                     <div align="center">
-                        <h1 id="pdheading">ORDERS</h1>
+                        <h1 id="pdheading">ORDER</h1>
    
-   				<center>
+   				
 					<div class="container p-2">
 						
-							<div class="form-group row ml-5">
-								<label for="validationDeafult02" class="col-md-7 pl-md-5"><strong>Order Id</strong></label>
-								<div class="col-1">
-									${order.id}
-								</div>
-							</div>
-							<div class="form-group row ml-5">
-								<label for="validationDeafult01" class="col-md-7 pl-md-5"><strong>Total Price</strong></label>
-								<div class="col-md-1">
-								${order.totalPrice}
-								</div>
-							</div>
-							<div class="form-group row ml-5">
-								<label for="validationDeafult03" class="col-md-7 pl-md-5"><strong>Customer Name</strong></label>
-								<div class="col-md-1">
-									${order.name}
-								</div>
-							</div>
+							
+                            
+							<table class="table">
+								<thead class="thead-light">
+									<tr>
 
-							<div class="form-group row ml-5">
-								<label for="validationDeafult04" class="col-md-7 pl-md-5"><strong>Address</strong></label>
-								<div class="col-md-1">
-									${order.address}
-								</div>
-							</div>
+										<th scope="col">Order ID</th>
+										<th scope="col">Total Price</th>
+										<th scope="col">Name</th>
+										<th scope="col">Address</th>
+										<th scope="col">Contact No.</th>
 
-							<div class="form-group row ml-5">
-								<label for="validationDeafult05" class="col-md-7 pl-md-5"><strong>Contact Number</strong></label>
-								<div class="col-md-1">
-									${order.contactNumber}
-								</div>
-							</div>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">${order.id}</th>
+										<td>${order.totalPrice}</td>
+										<td>${order.name}</td>
+										<td>${order.address}</td>
+										<td>${order.contactNumber}</td>
+									</tr>
 
+								</tbody>
+							</table>
 					</div>
 					
-					</center>
+					
 
 		                    <div class="container mt-2">
 		                        <div class="row mb-3 ml-5">

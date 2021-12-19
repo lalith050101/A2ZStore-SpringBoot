@@ -7,36 +7,22 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <t:adminLayout>
-	<div align="center" class="product-list">
-           <h1 id="pdheading">${productModel.productName}</h1>
-            <table id="products" >
-            	<tr >
-                <th>Product ID</th>
-                <td>${productModel.productId}</td>
-                </tr>
-                <tr>
-                <th>Price</th>
-                <td>${productModel.price}</td>
-                </tr>
-                <tr>
-                <th>Category</th>
-                <td>${productModel.category}</td>
-                </tr> 
-                <tr>
-                <th>Description</th>
-                <td>${productModel.description}</td>
-                </tr> 
-                <tr>
-                <th>Quantity</th>
-                <td>${productModel.quantity}</td>
-                </tr>
-                <tr>
-                <td><img src="${productModel.imageUrl}" width="200" height="200"/></td>
-                </tr>                          
-            </table>
-            <br>
-            
-                                   
-        </div>	
+   	
+        <div class="container">
+            <div class="row">
+                <h1 class="col-12 text-center mb-4">${productModel.productName}</h1> 
+                <div class="col-5 pr-2">
+                    <img src="${productModel.imageUrl}" alt="" height="300px" width="300px">
+                </div>
+                <div class="col-7">
+                    
+                    <p><strong>Product ID:</strong>  ${productModel.productId}</p>
+                    <p><strong>Price:</strong> ${productModel.price}</p>
+                    <p><strong>Category:</strong> ${productModel.category}</p>
+                    <p><strong>Description:</strong> ${productModel.description}</p>
+                    <p><strong>Quantity:</strong> ${productModel.quantity}</p>
+                </div>
+            </div>
+        </div>
 </t:adminLayout>
         
