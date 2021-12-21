@@ -39,7 +39,7 @@ public class CartController {
 	public ModelAndView addToCart(@PathVariable long productId, ModelAndView mandv, HttpServletRequest request) {
 		System.out.println("add to cart called........");
 		UserModel userModel = userModelService.extractUserModel(request);
-		
+
 		mandv.addObject("productModel", productRepository.findById(productId).orElse(null));
 		mandv.addObject("title", "Product Details");
 		mandv.setViewName("customer/productDetails");
@@ -53,7 +53,7 @@ public class CartController {
 			if (c.getProductId().equals(product)) {
 				c.setQuantity(quantity + c.getQuantity());
 				cartItemModelRepository.save(c);
-				
+
 				return mandv;
 			}
 		}
@@ -65,7 +65,7 @@ public class CartController {
 		cartItemModel.setQuantity(quantity);
 
 		cartItemModelRepository.save(cartItemModel);
-		
+
 		return mandv;
 	}
 
@@ -96,11 +96,9 @@ public class CartController {
 		return mandv;
 	}
 
-	@GetMapping(path = "updateCart/{cartItemId}")
-	public ModelAndView updateCart(@PathVariable Long cartItemId, ModelAndView mandv, HttpServletRequest request) {
+	@GetMapping(path = "updateCart/{cartItemId}/{quantity}")
+	public ModelAndView updateCart(@PathVariable Long cartItemId, @PathVariable int quantity, ModelAndView mandv, HttpServletRequest request) {
 		System.out.println("update cart called......");
-		
-		int quantity = Integer.parseInt(request.getParameter("quantity"));
 
 		CartItemModel cartItemModel = cartItemModelRepository.findById(cartItemId).orElse(null);
 		cartItemModel.setQuantity(quantity);

@@ -23,14 +23,16 @@ public class EmailSenderV2Imp implements EmailSenderV2, Serializable {
 
 	private String from;
 	private String password;
-	
+
 	private void loadCreds() {
-		try(FileInputStream fis = new FileInputStream("gmail-creds.properties")) {
-		Properties props = new Properties();
-		props.load(fis);
-		from = (String) props.get("email");
-		password = (String) props.get("password");
-		}catch(Exception e) {System.err.println("can't get Gmail Creds...");}
+		try (FileInputStream fis = new FileInputStream("gmail-creds.properties")) {
+			Properties props = new Properties();
+			props.load(fis);
+			from = (String) props.get("email");
+			password = (String) props.get("password");
+		} catch (Exception e) {
+			System.err.println("can't get Gmail Creds...");
+		}
 	}
 
 	@Override
@@ -43,7 +45,7 @@ public class EmailSenderV2Imp implements EmailSenderV2, Serializable {
 		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.port", "465");
-		props.put("mail.smtp.ssl.checkserveridentity", true); 
+		props.put("mail.smtp.ssl.checkserveridentity", true);
 		// get Session
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 			@Override

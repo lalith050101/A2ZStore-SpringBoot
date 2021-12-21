@@ -6,25 +6,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
 @Entity
 public class CartItemModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cartItemId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long cartItemId;
 
-    @ManyToOne
-    private ProductModel productId;
-    private int quantity;
+	@ManyToOne
+	private ProductModel productId;
+	private int quantity;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    private UserModel userId;
-    
-    private boolean proceedToPayment;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private UserModel userId;
 
-    public CartItemModel() {
+	private boolean proceedToPayment;
 
-    }
+	public CartItemModel() {
+
+	}
 
 	public CartItemModel(Long cartItemId, ProductModel productId, int quantity, UserModel userId,
 			boolean proceedToPayment) {
@@ -39,7 +40,7 @@ public class CartItemModel {
 	public void setProductId(ProductModel productId) {
 		this.productId = productId;
 	}
-	
+
 	public ProductModel getProductId() {
 		return productId;
 	}
@@ -75,5 +76,5 @@ public class CartItemModel {
 	public void setProceedToPayment(boolean proceedToPayment) {
 		this.proceedToPayment = proceedToPayment;
 	}
-	
+
 }

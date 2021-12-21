@@ -16,24 +16,24 @@ import com.service.UserModelService;
 @Controller
 
 public class CustomerController {
-	
+
 	@Autowired
 	UserModelService userModelService;
 
-	@GetMapping(path="profile")
+	@GetMapping(path = "profile")
 	public ModelAndView loadUserProfile(ModelAndView mandv, HttpServletRequest request) {
 		UserModel userModel = userModelService.extractUserModel(request);
 
 		mandv.addObject("userModel", userModel);
 		mandv.setViewName("customer/profile");
-		
+
 		return mandv;
 	}
-	
-	@PostMapping(path="updateProfile")
-	public ModelAndView updateUserProfile(UserModel userModel,ModelAndView mandv) {
+
+	@PostMapping(path = "updateProfile")
+	public ModelAndView updateUserProfile(UserModel userModel, ModelAndView mandv) {
 		System.out.println("update profile....");
-		if(!userModelService.updateUserModel(userModel)) {
+		if (!userModelService.updateUserModel(userModel)) {
 			mandv.setViewName("customer/profile");
 			System.out.println("not update profile....");
 
@@ -45,5 +45,5 @@ public class CustomerController {
 		return mandv;
 
 	}
-	
+
 }

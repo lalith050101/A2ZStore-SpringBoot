@@ -12,9 +12,9 @@ import com.model.UserModel;
 public interface CartItemModelRepository extends JpaRepository<CartItemModel, Long> {
 
 	Set<CartItemModel> findAllByUserId(UserModel user);
-	
+
 	Set<CartItemModel> findAllByUserIdAndProceedToPayment(UserModel userModel, boolean proceedToPayment);
-	
+
 	Long deleteAllByUserIdAndProceedToPayment(UserModel userModel, boolean proceedToPayment);
 
 }

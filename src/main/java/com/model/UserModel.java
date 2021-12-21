@@ -11,31 +11,31 @@ import javax.persistence.OneToMany;
 public class UserModel {
 
 	@Id
-    private String email;
+	private String email;
 
-    private String password;
+	private String password;
 
-    private String username;
+	private String username;
 
-    private String mobileNumber;
+	private String mobileNumber;
 
-    private Boolean active;
+	private Boolean active;
 
-    private String role;
-    
-    private String address;
+	private String role;
 
-    private String country;
+	private String address;
 
-    private String pinCode;
-    
-    @OneToMany(mappedBy="userId",fetch=FetchType.LAZY)
-    private Set<CartItemModel> cartItems;
+	private String country;
 
-    public UserModel() {
-    	
-    }
-    
+	private String pinCode;
+
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY)
+	private Set<CartItemModel> cartItems;
+
+	public UserModel() {
+
+	}
+
 	public UserModel(String email, String password, String username, String mobileNumber, Boolean active, String role,
 			String address, String country, String pinCode, Set<CartItemModel> cartItems) {
 		super();
@@ -122,11 +122,11 @@ public class UserModel {
 	public void setPinCode(String pinCode) {
 		this.pinCode = pinCode;
 	}
-	
+
 	public Set<CartItemModel> getCartItems() {
 		return cartItems;
 	}
-	
+
 	public void setCartItems(Set<CartItemModel> cartItems) {
 		this.cartItems = cartItems;
 	}

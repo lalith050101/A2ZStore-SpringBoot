@@ -33,61 +33,47 @@ class MyCommandLineRunner implements CommandLineRunner {
 
 	@Autowired
 	private UserModelRepository userModelRepository;
-	
+
 	@Autowired
 	private ProductRepository productRepository;
-	
+
 	@Autowired
 	private OrderItemModelRepository orderItemModelRepository;
-	
+
 	@Autowired
 	private OrderModelRepository orderModelRepository;
-	
+
 	@Autowired
 	private CartItemModelRepository cartModelRepository;
-	
+
 	@Override
 	public void run(String... args) throws Exception {
 		/*
-		createUser("admin@a2z.app", "admin@a2z", "admin", "Admin", true);
-		createUser("testuser@a2z.app", "testuser@a2z", "customer", "Test User", true);
-		
-		
-		orderItemModelRepository.deleteAllInBatch();
-		orderItemModelRepository.flush();
-		orderModelRepository.deleteAllInBatch(); 
-		orderModelRepository.flush();
-		cartModelRepository.deleteAllInBatch();
-		cartModelRepository.flush();
-		productRepository.deleteAllInBatch();
-		CSVReader reader = null;  
-		try  
-		{     
-		//parsing a CSV file into CSVReader class constructor  
-		reader = new CSVReader(new FileReader(ResourceUtils.getFile("classpath:products.csv")));  
-		String [] product;   
-		while ((product = reader.readNext()) != null)  
-		{  
-			ProductModel productModel = new ProductModel();
-			productModel.setCategory(product[6]);
-			productModel.setDescription(product[1]);
-			productModel.setImageUrl(product[2]);
-			productModel.setPrice(product[3]);
-			productModel.setProductName(product[4]);
-			productModel.setQuantity(product[5]);
-		  	productRepository.save(productModel);
-		}  
-		}  
-		catch (Exception e)   
-		{  
-		e.printStackTrace();  
-		}*/ 
-		
+		 * createUser("admin@a2z.app", "admin@a2z", "admin", "Admin", true);
+		 * createUser("testuser@a2z.app", "testuser@a2z", "customer", "Test User",
+		 * true);
+		 * 
+		 * 
+		 * orderItemModelRepository.deleteAllInBatch();
+		 * orderItemModelRepository.flush(); orderModelRepository.deleteAllInBatch();
+		 * orderModelRepository.flush(); cartModelRepository.deleteAllInBatch();
+		 * cartModelRepository.flush(); productRepository.deleteAllInBatch(); CSVReader
+		 * reader = null; try { //parsing a CSV file into CSVReader class constructor
+		 * reader = new CSVReader(new
+		 * FileReader(ResourceUtils.getFile("classpath:products.csv"))); String []
+		 * product; while ((product = reader.readNext()) != null) { ProductModel
+		 * productModel = new ProductModel(); productModel.setCategory(product[6]);
+		 * productModel.setDescription(product[1]);
+		 * productModel.setImageUrl(product[2]); productModel.setPrice(product[3]);
+		 * productModel.setProductName(product[4]);
+		 * productModel.setQuantity(product[5]); productRepository.save(productModel); }
+		 * } catch (Exception e) { e.printStackTrace(); }
+		 */
 
 	}
-	
-	public  void createUser(String email, String password, String role, String username, boolean active) {
-		
+
+	public void createUser(String email, String password, String role, String username, boolean active) {
+
 		UserModel userModel = new UserModel();
 		userModel.setActive(active);
 		userModel.setEmail(email);
@@ -95,8 +81,7 @@ class MyCommandLineRunner implements CommandLineRunner {
 		userModel.setRole(role);
 		userModel.setUsername(username);
 
-		
 		userModelRepository.save(userModel);
 	}
-	
+
 }

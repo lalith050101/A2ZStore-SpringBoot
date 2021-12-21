@@ -13,8 +13,8 @@ public class HomePageController {
 
 	@Autowired
 	private ProductRepository productRepository;
-	
-	@RequestMapping(path = "home", method=RequestMethod.GET)
+
+	@RequestMapping(path = "home", method = RequestMethod.GET)
 	public ModelAndView loadCustomerHomePage(ModelAndView mandv) {
 		mandv.addObject("productList", productRepository.findAll());
 
@@ -22,16 +22,14 @@ public class HomePageController {
 		mandv.setViewName("customer/home");
 		return mandv;
 	}
-	
-	@RequestMapping(path="adminHome", method=RequestMethod.GET)
+
+	@RequestMapping(path = "adminHome", method = RequestMethod.GET)
 	public ModelAndView loadAdminHomePage(ModelAndView mandv) {
 		mandv.addObject("productList", productRepository.findAll());
-		
+
 		mandv.addObject("title", "Admin Home");
 		mandv.setViewName("admin/home");
 		return mandv;
 	}
-	
-	
-	
+
 }

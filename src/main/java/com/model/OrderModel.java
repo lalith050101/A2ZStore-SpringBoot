@@ -14,29 +14,29 @@ import javax.persistence.OneToMany;
 public class OrderModel {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
-    
-    private Long totalPrice;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long Id;
 
-    private String userId;
+	private Long totalPrice;
 
-    private String name;
+	private String userId;
 
-    private String contactNumber;
-    
-    private String address;
-    
-    private String paymentType;
-	
-    private String paymentId;
-    
-    private String status;
-    
-    @OneToMany(mappedBy="orderId",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<OrderItemModel> orderItems;
-    
-    public OrderModel() {
+	private String name;
+
+	private String contactNumber;
+
+	private String address;
+
+	private String paymentType;
+
+	private String paymentId;
+
+	private String status;
+
+	@OneToMany(mappedBy = "orderId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<OrderItemModel> orderItems;
+
+	public OrderModel() {
 		// TODO Auto-generated constructor stub
 	}
 

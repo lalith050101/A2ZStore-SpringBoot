@@ -15,21 +15,20 @@ public class UserModelService {
 	@Autowired
 	private UserModelRepository userModelRepository;
 
-
 	public boolean addUserModel(UserModel userModel) {
 		userModel.setActive(false);
 		userModel.setRole("customer");
-		if(userModelRepository.findById(userModel.getEmail()).orElse(null) != null) {
+		if (userModelRepository.findById(userModel.getEmail()).orElse(null) != null) {
 			return false;
 		}
 		userModelRepository.save(userModel);
 		return true;
 	}
-	
+
 	public boolean updateUserModel(UserModel userModel) {
-		
-		UserModel user = userModelRepository.findById(userModel.getEmail()).orElse(null);		
-		if(user == null) {
+
+		UserModel user = userModelRepository.findById(userModel.getEmail()).orElse(null);
+		if (user == null) {
 			return false;
 		}
 		user.setUsername(userModel.getUsername());
@@ -39,30 +38,29 @@ public class UserModelService {
 		userModelRepository.save(user);
 		return true;
 	}
-	
-	
+
 	public boolean checkUser(UserModel userModel) {
 		UserModel user = userModelRepository.findById(userModel.getEmail()).orElse(null);
-		if(user == null) {
+		if (user == null) {
 			return false;
 		}
-		if(user.getPassword().equals(userModel.getPassword())) {
+		if (user.getPassword().equals(userModel.getPassword())) {
 			return true;
 		}
-		return false;	
+		return false;
 	}
-	
+
 	public UserModel getUserModel(String email) {
 		UserModel user = userModelRepository.findById(email).orElse(null);
-		
+
 		return user;
 	}
-	
+
 	public UserModel extractUserModel(HttpServletRequest request) {
-		HttpSession session =  request.getSession();
-		String email = (String)session.getAttribute("email");
-        UserModel userModel = userModelRepository.findById(email).orElse(null);    
+		HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("email");
+		UserModel userModel = userModelRepository.findById(email).orElse(null);
 		return userModel;
 	}
-	
+
 }

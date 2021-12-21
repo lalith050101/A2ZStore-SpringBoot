@@ -15,7 +15,7 @@
 
 
                                 <form method="post" action="proceedOrder">
-                                   
+
                                     <table class="table" id="cartItems">
                                         <thead class="thead-light">
                                             <tr>
@@ -25,7 +25,7 @@
                                                 <th scope="col">Price</th>
                                                 <th scope="col">Quantity</th>
                                                 <th scope="col">Amount</th>
-                                                <th colspan="3"class="pl-5">Action</th>
+                                                <th colspan="3" class="pl-5">Action</th>
 
                                             </tr>
                                         </thead>
@@ -41,7 +41,7 @@
                                                     <td>${cartItem.productId.price}</td>
                                                     <td><input type="number" value="${cartItem.quantity}"
                                                             onchange="changeQuantity(this)" name="quantity"
-                                                            id="quantity" required></td>
+                                                            id="${cartItem.cartItemId}" required></td>
                                                     <div style="display:none" id="productId">${cartItem.cartItemId}
                                                     </div>
 
@@ -71,19 +71,30 @@
 
                             </c:when>
                             <c:otherwise>
-                                <h2> No items added to cart</h2>
+                                <h3 style="color:slategray"> No items added to cart</h3>
                             </c:otherwise>
                         </c:choose>
                     </div>
                     <script>
-                        function changeQuantity(cartItemId, quantity) {
-                            var cartItemId = quantity.value;
-                            var qnty = document.quantity.value;
+                        function changeQuantity(e) {
+                            var qnty = e.value;
+                            var cartItemId = e.id;
 
+                            console.log(cartItemId + " : " + qnty);
                             var xmlHttp = new XMLHttpRequest();
-                            xmlHttp.open("GET", "updateCart/" + cartItemId, false); // false for synchronous request
+                            xmlHttp.open("GET", "updateCart/" + cartItemId + "/" + qnty, false); // false for synchronous request
                             xmlHttp.send(qnty);
                             return xmlHttp.responseText;
                         }
+
+
+                        $(document).ready(function(){
+                            $("form").submit(function(){
+                        if ($('input:checkbox').filter(':checked').length < 1){
+                                alert("Please Check at least one cart item");
+                        return false;
+                        }
+                            });
+                        });
                     </script>
                 </t:customerLayout>

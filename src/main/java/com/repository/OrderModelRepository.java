@@ -13,5 +13,5 @@ import com.model.UserModel;
 public interface OrderModelRepository extends JpaRepository<OrderModel, Long> {
 
 	Set<OrderModel> findAllByUserId(String user);
-	
+
 }

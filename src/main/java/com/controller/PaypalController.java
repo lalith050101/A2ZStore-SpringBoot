@@ -20,41 +20,40 @@ public class PaypalController {
 
 	@Autowired
 	PaypalService service;
-	
+
 	@Autowired
 	OrderModelService orderModelService;
-	
-	 @GetMapping(value = "pay/cancel")
-	    public String cancelPay() {
-		 	
-	        return "customer/paymentFailed";
-	    }
 
-	    @GetMapping(value = "pay/success")
-	    public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
-	        try {
-	            Payment payment = service.executePayment(paymentId, payerId);
-	            System.out.println(payment.toJSON());
-	            
-	            JSONObject obj = new JSONObject(payment.toJSON());
+	@GetMapping(value = "pay/cancel")
+	public String cancelPay() {
+
+		return "customer/paymentFailed";
+	}
+
+	@GetMapping(value = "pay/success")
+	public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
+		try {
+			Payment payment = service.executePayment(paymentId, payerId);
+			System.out.println(payment.toJSON());
+
+			JSONObject obj = new JSONObject(payment.toJSON());
 //	            System.out.println("payment id : " + obj.getString("id"));
-	           	System.out.println("payment id3 2 : " + obj.getJSONArray("transactions").getJSONObject(0).getString("description"));
+			System.out.println(
+					"payment id3 2 : " + obj.getJSONArray("transactions").getJSONObject(0).getString("description"));
 
-	           	
-	            if (payment.getState().equals("approved")) {
-	            	Long order = Long.parseLong(obj.getJSONArray("transactions").getJSONObject(0).getString("description"));
-	            	orderModelService.updatePayment(order, obj.getString("id"));
-	            	
-	            	System.out.println(obj.getString("intent"));
-	            	System.out.println(obj.getString("id"));
+			if (payment.getState().equals("approved")) {
+				Long order = Long.parseLong(obj.getJSONArray("transactions").getJSONObject(0).getString("description"));
+				orderModelService.updatePayment(order, obj.getString("id"));
 
-	            	
-	                return "redirect:/paymentSuccess";
-	            }
-	        } catch (PayPalRESTException e) {
-	         System.out.println(e.getMessage());
-	        }
-	        return "redirect:/";
-	    }
+				System.out.println(obj.getString("intent"));
+				System.out.println(obj.getString("id"));
+
+				return "redirect:/paymentSuccess";
+			}
+		} catch (PayPalRESTException e) {
+			System.out.println(e.getMessage());
+		}
+		return "redirect:/";
+	}
 
 }

@@ -14,23 +14,23 @@ import com.service.UserModelService;
 @Controller
 @RequestMapping("logout")
 public class LogoutController {
-	
+
 	@Autowired
 	UserModelService userModelService;
-	
-	@RequestMapping(method=RequestMethod.GET)
+
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView processLogoutPage(ModelAndView mandv, HttpServletRequest request) {
 //		if(!userModelService.checkUser(LoginModel)) {
 //			mandv.setViewName("login");
 //			return mandv;
 //		}
 
-		HttpSession session =  request.getSession();
+		HttpSession session = request.getSession();
 //		String username = (String)session.getAttribute("username");
 		session.removeAttribute("email");
 		session.removeAttribute("username");
 		session.invalidate();
 		return new ModelAndView("redirect:/login");
 	}
-	
+
 }

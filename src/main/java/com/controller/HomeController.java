@@ -8,14 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/")
 public class HomeController {
-	
 
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView loadSignupPage(ModelAndView mandv) {
 		System.out.println("home page of app");
 		mandv.setViewName("redirect:/login");
 		return mandv;
 	}
-	
-	
+
 }

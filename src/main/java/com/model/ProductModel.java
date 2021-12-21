@@ -14,32 +14,32 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Products")
-public class ProductModel{
+public class ProductModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long productId;
 
-    @Column(columnDefinition = "text")
-    private String imageUrl;
+	@Column(columnDefinition = "text")
+	private String imageUrl;
 
-    private String productName;
+	private String productName;
 
-    private String price;
+	private String price;
 
-    @Column(columnDefinition = "text")
-    private String description;
+	@Column(columnDefinition = "text")
+	private String description;
 
-    private String quantity;
-    
-    private String category;
-    
-    @OneToMany(mappedBy="productId",fetch=FetchType.LAZY)
-    private Set<CartItemModel> cartItems;
+	private String quantity;
 
-    public ProductModel() {
+	private String category;
 
-    }
+	@OneToMany(mappedBy = "productId", fetch = FetchType.LAZY)
+	private Set<CartItemModel> cartItems;
+
+	public ProductModel() {
+
+	}
 
 	public ProductModel(Long productId, String imageUrl, String productName, String price, String description,
 			String quantity, String category, Set<CartItemModel> cartItems) {
@@ -54,69 +54,67 @@ public class ProductModel{
 		this.cartItems = cartItems;
 	}
 
-
-
 	public Long getProductId() {
-        return productId;
-    }
+		return productId;
+	}
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
+	public void setProductId(Long productId) {
+		this.productId = productId;
+	}
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
+	public String getImageUrl() {
+		return imageUrl;
+	}
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 
-    public String getProductName() {
-        return productName;
-    }
+	public String getProductName() {
+		return productName;
+	}
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 
-    public String getPrice() {
-        return price;
-    }
+	public String getPrice() {
+		return price;
+	}
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
+	public void setPrice(String price) {
+		this.price = price;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public String getQuantity() {
-        return quantity;
-    }
+	public String getQuantity() {
+		return quantity;
+	}
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-    
-    public void setCategory(String category) {
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
+
+	public void setCategory(String category) {
 		this.category = category;
 	}
-    
-    public String getCategory() {
+
+	public String getCategory() {
 		return category;
 	}
-    
-    public void setCartItems(Set<CartItemModel> cartItems) {
+
+	public void setCartItems(Set<CartItemModel> cartItems) {
 		this.cartItems = cartItems;
 	}
-    
-    public Set<CartItemModel> getCartItems() {
+
+	public Set<CartItemModel> getCartItems() {
 		return cartItems;
 	}
 
@@ -136,6 +134,5 @@ public class ProductModel{
 		ProductModel other = (ProductModel) obj;
 		return Objects.equals(productId, other.productId);
 	}
-    
-    
+
 }

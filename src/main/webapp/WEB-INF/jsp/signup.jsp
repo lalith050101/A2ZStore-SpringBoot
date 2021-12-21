@@ -6,67 +6,69 @@
 				<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 				<t:layout>
-						
-					<div class="container">
-						<div class="row mr-md-4 pr-md-5">
-							<div class="col-12 text-center pr-md-5">
-								<h2>Register</h2>
+					<section class="vh-100">
+						<div class="container py-2 h-100">
+							<div class="row d-flex justify-content-center h-100">
+								<div class="col-12 col-md-8 col-lg-6 col-xl-5">
+									<div>
+										<div class="card-body p-1">
+											<h3 class=" d-flex justify-content-center">Sign Up</h3>
+											<form:form action="signup" method="post" modelAttribute="userModel">
+												<div class="form-group d-flex justify-content-center" style="color:red">
+													<p>${errorMessage}</p>
+												</div>
+										</div>
+
+										<div class="form-outline mb-4">
+											<label class="form-label text-left"
+												for="validationDeafult01">Username</label>
+											<form:input id="validationDeafult01" class="form-control form-control-lg"
+												type="text" path="username" minlength="5" maxlength="30"
+												name="username" />
+										</div>
+
+										<div class="form-outline mb-4">
+											<label class="form-label text-left" for="validationDeafult02">Email</label>
+											<form:input id="validationDeafult02" class="form-control form-control-lg"
+												type="email" path="email" name="username" />
+										</div>
+
+										<div class="form-outline mb-4">
+											<label class="form-label text-left" for="validationDeafult03">Mobile
+												No</label>
+											<form:input id="validationDeafult03" class="form-control form-control-lg"
+												type="tel" path="mobileNumber" pattern="[6-9]{1}[0-9]{9}"
+												name="username" />
+										</div>
+
+										<div class="form-outline mb-4">
+											<label class="form-label text-left"
+												for="validationDeafult04">Address</label>
+											<form:textarea id="validationDeafult04" class="form-control form-control-lg"
+												path="address" minlength="5" maxlength="250" name="username" />
+										</div>
+
+									</div>
+									<div class="form-outline mb-4">
+										<label class="form-label" for="validationDeafult05">Password</label>
+										<form:input id="validationDeafult05" class="form-control form-control-lg"
+											path="password" minlength="6" maxlength="30" type="password" name="pswrd" />
+									</div>
+
+
+									<button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
+									<hr class="my-4">
+
+									</form:form>
+
+									<p class="mb-0">Already have an account? <a href="/login"
+											class="text-white-50 fw-bold">Log In here</a></p>
+
+								</div>
 							</div>
 						</div>
-					</div>
+						</div>
+						</div>
 
-					<div class="container p-2">
-						<form:form method="post" action="signup" modelAttribute="userModel">
-							<div class="form-group row ml-5">
-								<label for="validationDeafult01" class="col-md-2 pl-md-5">Username</label>
-								<div class="col-md-6">
-									<form:input class="form-control" path="username" minlength="5" maxlength="30"
-										type="text" name="username" id="validationDeafult01" />
-								</div>
-							</div>
-
-							<div class="form-group row ml-5">
-								<label for="validationDeafult02" class="col-md-2 pl-md-5">Email id</label>
-								<div class="col-md-6">
-									<form:input class="form-control" type="email" path="email" id="validationDeafult02" />
-								</div>
-							</div>
-
-							<div class="form-group row ml-5">
-								<label for="validationDeafult03" class="col-md-2 pl-md-5">Mobile No:</label>
-								<div class="col-md-6">
-									<form:input class="form-control" type="tel" path="mobileNumber"
-										pattern="[6-9]{1}[0-9]{9}" id="validationDeafult03" />
-								</div>
-							</div>
-
-							<div class="form-group row ml-5">
-								<label for="validationDeafult04" class="col-md-2 pl-md-5">Address</label>
-								<div class="col-md-6">
-									<form:textarea path="address" minlength="5" maxlength="250" class="form-control"
-										id="validationDeafult04" />
-								</div>
-							</div>
-
-							<div class="form-group row ml-5">
-								<label for="validationDeafult05" class="col-md-2 pl-md-5">Password</label>
-								<div class="col-md-6">
-									<form:input class="form-control" path="password" minlength="6" maxlength="30" type="password" name="pswrd"
-										id="validationDeafult05" />
-								</div>
-							</div>
-
-
-							<div class="form-group row mr-md-4">
-								<div class="col-md-11 text-center">
-									<button type="submit" class="btn btn-primary">Register</button>
-								</div>
-							</div>
-
-							<div class="col-12 pl-md-5 ml-5">
-								Already have an account? <a href="/login">Log In here.</a>
-							</div>
-
-							</form:form>
-					</div>
+					</section>
 				</t:layout>

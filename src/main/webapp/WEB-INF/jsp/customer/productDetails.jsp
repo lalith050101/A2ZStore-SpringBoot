@@ -6,7 +6,7 @@
                 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
                 <t:customerLayout>
-                    
+
 
                     <div class="container">
                         <div class="row">
@@ -17,7 +17,7 @@
                             </div>
                             <div class="col-7">
 
-                                
+
                                 <p><strong>Price:</strong> ${productModel.price}</p>
                                 <p><strong>Category:</strong> ${productModel.category}</p>
                                 <p><strong>Description:</strong> ${productModel.description}</p>
@@ -29,7 +29,7 @@
                                         <label for="validationDeafult01" class="col-md-2 pt-1">Quantity:</label>
                                         <div class="col-md-6">
                                             <input class="form-control" type="number" value="1" name="quantity"
-                                                id="validationDeafult01" >
+                                                id="validationDeafult01">
                                         </div>
                                     </div>
                                     <div class="form-group row mr-md-4">

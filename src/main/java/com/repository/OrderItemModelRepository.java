@@ -8,5 +8,4 @@ import com.model.OrderItemModel;
 @Repository
 public interface OrderItemModelRepository extends JpaRepository<OrderItemModel, Long> {
 
-	
 }
