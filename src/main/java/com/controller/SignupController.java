@@ -15,6 +15,8 @@ import com.emailsender.EmailSenderV1;
 import com.emailsender.EmailSenderV1Imp;
 import com.model.UserModel;
 import com.service.UserModelService;
+import com.smssender.SmsSender;
+import com.smssender.SmsSenderImpl;
 
 @Controller
 @RequestMapping("signup")
@@ -55,6 +57,16 @@ public class SignupController {
 		} catch (Exception e) {
 			System.out.println("Email not sent for signup");
 		}
+		
+		
+		try {
+			SmsSender ss = new SmsSenderImpl();
+			ss.sendSms(userModel.getMobileNumber(), userModel.getUsername() + ", you have been successfully register for A2ZStore Spring App");
+
+		} catch (Exception e) {
+			System.out.println("SMS not sent for signup" + e);
+		}
+		
 		return new ModelAndView("redirect:/login");
 
 	}

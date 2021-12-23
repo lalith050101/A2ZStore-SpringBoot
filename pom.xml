@@ -96,6 +96,12 @@
 		    <version>5.4</version>
 		</dependency>
 		
+		<dependency>
+		  <groupId>com.twilio.sdk</groupId>
+		  <artifactId>twilio</artifactId>
+		  <version>8.23.0</version>
+		</dependency>
+		
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
