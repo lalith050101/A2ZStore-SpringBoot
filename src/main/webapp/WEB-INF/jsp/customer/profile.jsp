@@ -49,10 +49,10 @@
 						</div>
 
 						<div class="form-group row ml-5">
-							<label for="validationDeafult05" class="col-md-2 pl-md-5">Password</label>
+							<label for="validationDeafult05" class="col-md-2 pl-md-5">New Password</label>
 							<div class="col-md-6">
 								<form:input class="form-control" path="password" minlength="6" maxlength="30"
-									type="password" name="pswrd" id="validationDeafult05" />
+									type="password" name="password" id="validationDeafult05" value="" />
 							</div>
 						</div>
 

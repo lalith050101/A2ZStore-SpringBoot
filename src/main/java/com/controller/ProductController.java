@@ -3,6 +3,7 @@ package com.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,18 +39,13 @@ public class ProductController {
 	public ModelAndView processAddProductPage(ProductModel productModel, ModelAndView mandv) {
 		productRepository.save(productModel);
 
-		mandv.setViewName("redirect:/adminHome");
+		mandv.setViewName("redirect:/home");
 		return mandv;
 
 	}
 
 	@GetMapping("editProduct/{productId}")
 	public ModelAndView editProduct(@PathVariable Long productId, ModelAndView mandv, HttpServletRequest request) {
-
-		if (!LoginValidationController.isValidUser(request.getSession())) {
-			mandv.setViewName("redirect:/login");
-			return mandv;
-		}
 
 		System.out.println("edit called");
 		mandv.addObject("productModel", (ProductModel) productRepository.findById(productId).orElse(null));
@@ -65,7 +61,7 @@ public class ProductController {
 	public ModelAndView updateProduct(@PathVariable Long productId, ProductModel productModel, ModelAndView mandv) {
 		System.out.println("updateProduct");
 		productRepository.save(productModel);
-		mandv.setViewName("redirect:/adminHome");
+		mandv.setViewName("redirect:/home");
 		return mandv;
 
 	}
@@ -74,14 +70,14 @@ public class ProductController {
 	public ModelAndView deleteProduct(@PathVariable Long productId, ModelAndView mandv) {
 		productRepository.deleteById(productId);
 
-		mandv.setViewName("redirect:/adminHome");
+		mandv.setViewName("redirect:/home");
 		return mandv;
 
 	}
 
 	@GetMapping("/getProduct/{productId}")
-	public ModelAndView getProduct(@PathVariable Long productId, ModelAndView mandv, HttpServletRequest request) {
-		UserModel userModel = userModelService.extractUserModel(request);
+	public ModelAndView getProduct(@PathVariable Long productId, ModelAndView mandv, HttpServletRequest request, Authentication authentication) {
+		UserModel userModel = userModelService.extractUserModel(authentication.getName());
 
 		mandv.addObject("productModel", productRepository.findById(productId).orElse(null));
 

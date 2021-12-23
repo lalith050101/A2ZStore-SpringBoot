@@ -1,13 +1,8 @@
 <%@page import="java.util.ResourceBundle" %>
 	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-		<%@ include file="loginValidation.jsp" %>
-
-
-
 			<div class="container-fluid mb-2 p-0">
 				<nav class="navbar navbar-dark navbar-expand-md bg-dark">
-					<a class="navbar-brand" href="/adminHome" style="color: white;">A2Z</a>
+					<a class="navbar-brand" href="/home" style="color: white;">A2Z</a>
 
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
 						aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +13,7 @@
 						<ul class="navbar-nav ml-auto">
 
 							<li class="nav-item">
-								<a class="nav-link" href="/adminHome" style="color: white;">Home</a>
+								<a class="nav-link" href="/home" style="color: white;">Home</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="/allOrders" style="color: white;">All Orders</a>

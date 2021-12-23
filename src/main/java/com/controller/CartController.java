@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,9 +37,9 @@ public class CartController {
 	private CartItemModelRepository cartItemModelRepository;
 
 	@PostMapping("/addToCart/{productId}")
-	public ModelAndView addToCart(@PathVariable long productId, ModelAndView mandv, HttpServletRequest request) {
+	public ModelAndView addToCart(@PathVariable long productId, ModelAndView mandv, HttpServletRequest request, Authentication authentication) {
 		System.out.println("add to cart called........");
-		UserModel userModel = userModelService.extractUserModel(request);
+		UserModel userModel = userModelService.extractUserModel(authentication.getName());
 
 		mandv.addObject("productModel", productRepository.findById(productId).orElse(null));
 		mandv.addObject("title", "Product Details");
@@ -70,8 +71,8 @@ public class CartController {
 	}
 
 	@GetMapping(path = "cart")
-	public ModelAndView getCartItems(ModelAndView mandv, HttpServletRequest request) {
-		UserModel userModel = userModelService.extractUserModel(request);
+	public ModelAndView getCartItems(ModelAndView mandv, HttpServletRequest request, Authentication authentication) {
+		UserModel userModel = userModelService.extractUserModel(authentication.getName());
 
 		Set<CartItemModel> cartItemModels = cartItemModelRepository.findAllByUserId(userModel);
 		for (CartItemModel cartItemModel : cartItemModels) {
@@ -87,8 +88,8 @@ public class CartController {
 	}
 
 	@GetMapping(path = "/removeCartItem/{cartItemId}")
-	public ModelAndView removeCartItem(@PathVariable Long cartItemId, ModelAndView mandv, HttpServletRequest request) {
-		UserModel userModel = userModelService.extractUserModel(request);
+	public ModelAndView removeCartItem(@PathVariable Long cartItemId, ModelAndView mandv, HttpServletRequest request, Authentication authentication) {
+		UserModel userModel = userModelService.extractUserModel(authentication.getName());
 
 		cartItemModelRepository.deleteById(cartItemId);
 

@@ -22,7 +22,7 @@
 												<div class="form-outline mb-4">
 													<label class="form-label text-left" for="typeEmailX">Email</label>
 													<form:input id="typeEmailX" class="form-control form-control-lg"
-														type="email" path="email" name="username" />
+														type="email" path="email" name="email" />
 
 												</div>
 
@@ -30,7 +30,7 @@
 													<label class="form-label" for="typePasswordX">Password</label>
 													<form:input id="typePasswordX" class="form-control form-control-lg"
 														path="password" minlength="6" maxlength="30" type="password"
-														name="pswrd" />
+														name="password" />
 
 												</div>
 

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.model.UserModel;
@@ -14,9 +15,12 @@ public class UserModelService {
 
 	@Autowired
 	private UserModelRepository userModelRepository;
+	
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public boolean addUserModel(UserModel userModel) {
-		userModel.setActive(false);
+		userModel.setActive(true);
 		userModel.setRole("customer");
 		if (userModelRepository.findById(userModel.getEmail()).orElse(null) != null) {
 			return false;
@@ -34,7 +38,7 @@ public class UserModelService {
 		user.setUsername(userModel.getUsername());
 		user.setMobileNumber(userModel.getMobileNumber());
 		user.setAddress(userModel.getAddress());
-		user.setPassword(userModel.getPassword());
+		user.setPassword(bCryptPasswordEncoder.encode(userModel.getPassword()));
 		userModelRepository.save(user);
 		return true;
 	}
@@ -56,9 +60,7 @@ public class UserModelService {
 		return user;
 	}
 
-	public UserModel extractUserModel(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		String email = (String) session.getAttribute("email");
+	public UserModel extractUserModel(String email) {
 		UserModel userModel = userModelRepository.findById(email).orElse(null);
 		return userModel;
 	}

@@ -5,6 +5,7 @@ import java.net.http.HttpRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +22,9 @@ public class SignupController {
 
 	@Autowired
 	UserModelService userModelService;
+	
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView loadSignupPage() {
@@ -34,7 +38,7 @@ public class SignupController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView processSignupPage(UserModel userModel, HttpServletRequest request) {
-
+		userModel.setPassword(bCryptPasswordEncoder.encode(userModel.getPassword()));
 		if (!userModelService.addUserModel(userModel)) {
 			ModelAndView mandv = new ModelAndView("signup");
 			mandv.addObject("loginModel", userModel);

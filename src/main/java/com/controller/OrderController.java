@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,8 +60,8 @@ public class OrderController {
 	private String APP_URL;
 
 	@GetMapping(path = "orderDetails")
-	public ModelAndView orderDetails(ModelAndView mandv, HttpServletRequest request) {
-		UserModel userModel = userModelService.extractUserModel(request);
+	public ModelAndView orderDetails(ModelAndView mandv,  Authentication authentication) {
+		UserModel userModel = userModelService.extractUserModel(authentication.getName());
 
 		Set<CartItemModel> cartItemModels = cartItemModelRepository.findAllByUserIdAndProceedToPayment(userModel, true);
 
@@ -72,8 +73,8 @@ public class OrderController {
 	}
 
 	@PostMapping(path = "placeOrder")
-	public ModelAndView placeOrder(ModelAndView mandv, HttpServletRequest request) {
-		UserModel userModel = userModelService.extractUserModel(request);
+	public ModelAndView placeOrder(ModelAndView mandv, HttpServletRequest request, Authentication authentication) {
+		UserModel userModel = userModelService.extractUserModel(authentication.getName());
 
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
@@ -137,8 +138,8 @@ public class OrderController {
 	}
 
 	@GetMapping(path = "paymentSuccess")
-	public ModelAndView paymentSuccess(ModelAndView mandv, HttpServletRequest request) {
-		UserModel userModel = userModelService.extractUserModel(request);
+	public ModelAndView paymentSuccess(ModelAndView mandv,  Authentication authentication) {
+		UserModel userModel = userModelService.extractUserModel(authentication.getName());
 
 		mandv.addObject("orderStatus", "Payment Done Successfully! Order placed!");
 
@@ -153,9 +154,9 @@ public class OrderController {
 	}
 
 	@GetMapping(path = "orders")
-	public ModelAndView getUserOrders(ModelAndView mandv, HttpServletRequest request) {
-		UserModel userModel = userModelService.extractUserModel(request);
-
+	public ModelAndView getUserOrders(ModelAndView mandv, Authentication authentication) {
+		UserModel userModel = userModelService.extractUserModel(authentication.getName());
+		 
 		Set<OrderModel> Orders = orderModelRepository.findAllByUserId(userModel.getEmail());
 
 		mandv.addObject("orders", Orders);

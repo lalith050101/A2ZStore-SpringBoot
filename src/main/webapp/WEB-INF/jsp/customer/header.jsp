@@ -1,7 +1,6 @@
 <%@page import="java.util.ResourceBundle" %>
 	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-		<%@ include file="loginValidation.jsp" %>
 
 
 			<div class="container-fluid mb-2 p-0">
