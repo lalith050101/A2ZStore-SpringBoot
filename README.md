@@ -1,8 +1,8 @@
 # A2ZStore-SpringBoot
 
 ## PPT Link
-  Click [here](https://docs.google.com/presentation/d/1qKgxO4dinN5CTBM2Ejkt0AtyMZT2xax2CEKnsZBjgGA/) to see PPT of the project.
-
+  Click [here](https://drive.google.com/drive/folders/1nMHbYQ2-cMQaEoCd0DE-7CzhSNoZDa3B?usp=sharing) to see PPT, Video and Credentials of the project.
+  
 
 ## Setup Procedure
   ### 1. Database Creation (MySQL)
